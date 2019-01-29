@@ -21,6 +21,7 @@ static_resources:
                   prefix: "/service1/test"
                 route:
                   cluster: local_service
+              - match:
                   prefix: "/service1/test/"
                 route:
                   cluster: local_service
