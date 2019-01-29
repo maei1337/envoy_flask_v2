@@ -6,14 +6,15 @@ api = Api(app)
 
 class output(Resource):
     def get(self):
-        return {'message': 'Hallo, ich bin ON'}, 200
+        return {'message': 'Hallo, ich bin Service1'}, 200
 
 class nochmal(Resource):
-    def get(self):
-        return {'message': 'Hallo, ich bin nochmal'}, 200
+    def get(self, name):
+        return {'message': 'Hallo, ich bin {} und laufe auf Service 1'.format(name)}, 200
 
-api.add_resource(output, "/test")
-api.add_resource(nochmal, "/hoffe")
+
+api.add_resource(output, "/service1/test")
+api.add_resource(nochmal, "/service1/test/<string:name>")
 
 
 if __name__ == '__main__':

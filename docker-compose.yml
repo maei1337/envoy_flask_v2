@@ -17,9 +17,8 @@ services:
       - "8001:8001"
 
   dummyservice:
-    build:
-      context: ./service
-      dockerfile: Dockerfile
+    container_name: dummyservice
+    build: ./service
     volumes:
       - ./service/service-envoy.yaml:/etc/service-envoy.yaml
     networks:
@@ -28,6 +27,20 @@ services:
           - dummyservice
     environment:
       - SERVICE_NAME=Tittyfucker
+    expose:
+      - "80"
+
+  dummyservice2:
+    container_name: dummyservice2
+    build: ./service2
+    volumes:
+      - ./service2/service-envoy.yaml:/etc/service-envoy.yaml
+    networks:
+      envoymesh:
+        aliases:
+          - dummyservice2
+    environment:
+      - SERVICE_NAME=Bootyluver
     expose:
       - "80"
 

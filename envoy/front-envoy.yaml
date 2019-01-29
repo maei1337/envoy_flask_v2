@@ -18,16 +18,25 @@ static_resources:
               - "*"
               routes:
               - match:
-                  prefix: "/test"
+                  prefix: "/service1/test"
                 route:
                   cluster: dummyservice
               - match:
-                  prefix: "/hoffe"
+                  prefix: "/service1/test/"
                 route:
                   cluster: dummyservice
+              - match:
+                  prefix: "/service2/test"
+                route:
+                  cluster: dummyservice2
+              - match:
+                  prefix: "/service2/test/"
+                route:
+                  cluster: dummyservice2
           http_filters:
           - name: envoy.router
             config: {}
+
   clusters:
   - name: dummyservice
     connect_timeout: 0.25s
@@ -37,6 +46,15 @@ static_resources:
     hosts:
     - socket_address:
         address: dummyservice
+        port_value: 80
+  - name: dummyservice2
+    connect_timeout: 0.25s
+    type: strict_dns
+    lb_policy: round_robin
+    http2_protocol_options: {}
+    hosts:
+    - socket_address:
+        address: dummyservice2
         port_value: 80
 admin:
   access_log_path: "/dev/null"

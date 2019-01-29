@@ -13,15 +13,16 @@ static_resources:
           route_config:
             name: local_route
             virtual_hosts:
-            - name: dummyservice
+            - name: dummyservice2
               domains:
               - "*"
               routes:
               - match:
-                  prefix: "/service1/test"
+                  prefix: "/service2/test"
                 route:
                   cluster: local_service
-                  prefix: "/service1/test/"
+              - match:
+                  prefix: "/service2/test/"
                 route:
                   cluster: local_service
           http_filters:
