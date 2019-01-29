@@ -26,7 +26,7 @@ services:
         aliases:
           - dummyservice
     environment:
-      - SERVICE_NAME=Tittyfucker
+      - SERVICE_NAME=service1
     expose:
       - "80"
 
@@ -40,7 +40,7 @@ services:
         aliases:
           - dummyservice2
     environment:
-      - SERVICE_NAME=Bootyluver
+      - SERVICE_NAME=service2
     expose:
       - "80"
 
